@@ -6,6 +6,7 @@ const topListContainer = document.getElementById('top10-container');
 
 const searchBtn = document.querySelector('.search-btn');
 const resultsContainer = document.getElementById('results-container');
+const searchForm = document.getElementById('search-form')
 
 async function showMovieCard(movie) {
     const card = document.createElement('div');
@@ -161,6 +162,10 @@ topListType.addEventListener('change', () => {
 searchBtn.addEventListener('click', () => {
     resultsContainer.innerHTML = '';
     showQuery();
+});
+
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 });
 
 showMovieCards();
