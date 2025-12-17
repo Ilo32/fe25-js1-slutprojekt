@@ -19,15 +19,19 @@ async function showMovieCard(movie) {
     const movieTitle = document.createElement('h4');
     const movieVote = document.createElement('p');
     const movieRelease = document.createElement('p');
+    const movieDescription = document.createElement('p');
 
     movieTitle.textContent = movie.title;
     movieVote.textContent = movie.vote_average;
     movieRelease.textContent = movie.release_date;
     movieImage.src = getImageUrl(movie.poster_path)
+    movieImage.alt = `Image of ${movie.title}`
+    movieDescription.textContent = movie.overview
     
     textDiv.appendChild(movieTitle);
     textDiv.appendChild(movieVote);
     textDiv.appendChild(movieRelease);
+    textDiv.appendChild(movieDescription)
 
     card.appendChild(movieImage);
     card.appendChild(textDiv);
@@ -64,17 +68,20 @@ async function showQueriedMovies(response) {
         const movieTitle = document.createElement('h4');
         const movieVote = document.createElement('p');
         const movieRelease = document.createElement('p');
-    
+        const movieDescription = document.createElement('p');
+        
         movieTitle.textContent = movie.title;
         movieVote.textContent = movie.vote_average;
         movieRelease.textContent = movie.release_date;
         movieImage.src = getImageUrl(movie.poster_path)
         movieImage.alt = `Image of ${movie.title}`
+        movieDescription.textContent = movie.overview
         
         textDiv.appendChild(movieTitle);
         textDiv.appendChild(movieVote);
         textDiv.appendChild(movieRelease);
-    
+        textDiv.appendChild(movieDescription)
+
         card.appendChild(movieImage);
         card.appendChild(textDiv);
         resultsContainer.appendChild(card); 
