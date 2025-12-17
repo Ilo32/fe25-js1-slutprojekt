@@ -1,11 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieDB - Movie Database</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MovieMania - Hitta din nästa favoritfilm med TMDB API" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/moviecard.css" />
+    <link rel="stylesheet" href="assets/css/search.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <title>MovieMania - Hitta din nästa favoritfilm</title>
 </head>
+
 <body>
-    Hello, Work in progress.
+    <!-- Navbar -->
+    <header class="navbar-container" id="navbar">
+        <nav class="navbar-inner">
+            <h1>MovieMania</h1>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Hitta din nästa favoritfilm!</h2>
+                <p>Sök bland tusentals filmer och skådespelare</p>
+                <form id="search-form" class="search-form">
+                    <div class="search-input-group">
+                        <select id="search-type" class="search-select" aria-label="Välj söktyp">
+                            <option value="movie">Filmer</option>
+                            <option value="person">Personer</option>
+                        </select>
+                        <input type="text" id="search-input" class="search-input" placeholder="Sök efter filmer..."
+                            aria-label="Sökfält" autocomplete="off" />
+                        <button type="submit" class="search-btn" aria-label="Sök">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Home Section -->
+        <section id="home-section" class="content-section">
+            <div id="message-container"></div>
+            <!-- Search Results Section -->
+            <section class="results-wrapper">
+                <div id="results-container" class="results-container"></div>
+            </section>
+            <div class="section-header">
+                <h3><i class="fa fa-fire"></i> Populära just nu</h3>
+                <select id="top10-type" class="top10-select" aria-label="Välj listtyp">
+                    <option value="popular">Populära</option>
+                    <option value="top_rated">Högst betyg</option>
+                </select>
+            </div>
+            <div class="top10-wrapper">
+                <div id="top10-container" class="top10-container"></div>
+            </div>
+        </section>
+
+        <section id="toplist-section" class="content-section hidden">
+            <div class="section-header">
+                <h3><i class="fa fa-trophy"></i> Top 10 Filmer</h3>
+                <p>De bästa filmerna enligt TMDB</p>
+            </div>
+
+            <div class="toplist-grid" id="toplist-grid">
+            </div>
+        </section>
+    </main>
+
+    <!-- Movie Details Modal -->
+    <div id="movie-modal" class="movie-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span>MovieMania</span>
+            </div>
+            <p class="footer-text">
+                Data från <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>
+            </p>
+            <p class="footer-copyright">© 2025 MovieMania | Skolprojekt</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="assets/js/api.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
+
 </html>
