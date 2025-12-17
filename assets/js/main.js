@@ -164,7 +164,7 @@ searchBtn.addEventListener('click', () => {
     showQuery();
 });
 
-searchForm.addEventListener('submit', (event) => {
+searchForm.addEventListener('submit', function(event) {
     event.preventDefault();
 });
 
