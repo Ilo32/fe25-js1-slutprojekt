@@ -164,8 +164,8 @@ searchBtn.addEventListener('click', () => {
     showQuery();
 });
 
-searchForm.addEventListener('submit', function(event) {
-    event.preventDefault();
+searchForm.addEventListener('submit', () => {
+    e.preventDefault();
 });
 
 showMovieCards();
