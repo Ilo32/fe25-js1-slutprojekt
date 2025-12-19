@@ -1,15 +1,14 @@
 import { getTop10Movies, queryMovies, queryPeople } from './api.js';
 import { displayErrorOnSite, getImageUrl } from './utils.js';
 
-const topListType = document.getElementById('top10-type');
-const topListContainer = document.getElementById('top10-container');
+const listType = document.getElementById('top10-type');
+const listContainer = document.getElementById('top10-container');
 
 const searchBtn = document.querySelector('.search-btn');
 const resultsContainer = document.getElementById('results-container');
-const searchForm = document.getElementById('search-form')
 
 async function showMovieCard(movie) {
-    const card = document.createElement('div');
+    const card = document.createElement('button');
     card.classList.add('top10-card');
 
     const movieImage = document.createElement('img');
@@ -35,14 +34,18 @@ async function showMovieCard(movie) {
 
     card.appendChild(movieImage);
     card.appendChild(textDiv);
-    topListContainer.appendChild(card);
+    listContainer.appendChild(card);
+
+    card.addEventListener('click', () => {
+        console.log("Clicked");
+    });
 };
 
 async function showMovieCards() {
     try {
-        const data = await getTop10Movies(topListType.value);
+        const data = await getTop10Movies(listType.value);
         const movies = data.results;
-        if (!movies) {
+        if (!data) {
             displayErrorOnSite("Couldn't fetch movies from TMDB at the moment, please try again later.")
             return
         }
@@ -157,22 +160,18 @@ async function showQuery() {
             return
         }
     } catch(error) {
-        displayErrorOnSite("Whoops! Something went wrong on our servers, try again later.");
+        displayErrorOnSite(error);
     }
 };
 
-topListType.addEventListener('change', () => {
-    topListContainer.innerHTML = '';
+listType.addEventListener('change', () => {
+    listContainer.innerHTML = '';
     showMovieCards();
 });
 
 searchBtn.addEventListener('click', () => {
     resultsContainer.innerHTML = '';
     showQuery();
-});
-
-searchForm.addEventListener('submit', () => {
-    e.preventDefault();
 });
 
 showMovieCards();

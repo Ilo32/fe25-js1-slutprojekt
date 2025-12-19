@@ -6,15 +6,15 @@ export const getTop10Movies = async (type) => {
         const response = await fetch(`${base_url}/movie/${type}?api_key=${api_key}`); 
         const data = await response.json();
 
-        if (data.results) {
+        if (response.status === 200) {
             return data;
         } else {
-            displayErrorOnSite("Error", "Something went wrong while fetching data; try again later.")
-            return null;
+            displayErrorOnSite("Something went wrong while fetching data; try again later.")
+            return;
         }
     } catch(error) {
-        displayErrorOnSite("Error", error)
-        return null;
+        displayErrorOnSite(error);
+        return;
     }
 };
 
@@ -22,17 +22,33 @@ export const getTop10Movies = async (type) => {
 export const getMovieDetails = async (movieId) => {
     const response = await fetch(`${base_url}/movie/${movieId}?api_key=${api_key}`);
     const data = await response.json();
-    return data;
+
+    if (response.status === 200) {
+        return data;
+    } else {
+        displayErrorOnSite("Something went wrong while fetching data; try again later.")
+        return;
+    }
 };
 
 export const queryMovies = async (query) => {
     const response = await fetch(`${base_url}/search/movie?query=${query}&api_key=${api_key}`);
     const data = await response.json();
-    return data;
+    if (response.status === 200) {
+        return data;
+    } else {
+        displayErrorOnSite("Something went wrong while fetching data; try again later.")
+        return;
+    }
 }
 
 export const queryPeople = async (query) => {
     const response = await fetch(`${base_url}/search/person?query=${query}&api_key=${api_key}`);
     const data = await response.json();
-    return data;
+    if (response.status === 200) {
+        return data;
+    } else {
+        displayErrorOnSite("Something went wrong while fetching data; try again later.")
+        return;
+    }
 }

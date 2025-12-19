@@ -198,11 +198,11 @@ ul {
 }
 
 .footer-brand i {
-    color: var(--accent-primary);
+    color: var(--accent-secondary);
 }
 
 .footer-text {
-    color: var(--text-secondary);
+    color: var(--accent-secondary);
     margin-bottom: var(--spacing-sm);
 }
 

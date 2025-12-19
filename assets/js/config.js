@@ -24,7 +24,7 @@ export const image_sizes = {
 };
 
 export const placeholder_images = {
-    poster: 'https://via.placeholder.com/342x513?text=No+Poster',
-    profile: 'https://via.placeholder.com/185x278?text=No+Photo',
-    backdrop: 'https://via.placeholder.com/780x439?text=No+Backdrop'
+    poster: 'https://placehold.co/342x513?text=No+Poster',
+    profile: 'https://placehold.co/185x278?text=No+Photo',
+    backdrop: 'https://placehold.co/780x439?text=No+Backdrop'
 };
