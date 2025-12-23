@@ -5,10 +5,7 @@
 import { displayErrorOnSite, getImageUrl } from './utils.js';
 import { queryPeople, getMovieDetails, queryMovies } from './api.js'
 
-const listType = document.getElementById('top10-type');
 const listContainer = document.getElementById('top10-container');
-
-const searchBtn = document.querySelector('.search-btn');
 const resultsContainer = document.getElementById('results-container');
 
 async function showModal(movieId) {
