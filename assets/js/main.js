@@ -5,6 +5,7 @@ import { showMovieCard, showQuery } from './renderContent.js'
 const listType = document.getElementById('top10-type');
 const searchForm = document.getElementById('search-form')
 const listContainer = document.getElementById('top10-container');
+const heroContent = document.querySelector('.hero-content');
 const heroTitle = heroContent?.querySelector('h2');
 const heroSubtitle = heroContent?.querySelector('p');
 
