@@ -253,7 +253,8 @@ export async function showQuery() {
         if (searchInputType === "movie") {
             queryMovies(searchInputValue)
             .then(async (responseData) => {
-                return showQueriedMovies(responseData);
+                const data = await responseData.json();
+                return showQueriedMovies(data);
             })
             .catch((responseData) => {
                 displayErrorOnSite(500);
@@ -263,7 +264,8 @@ export async function showQuery() {
         if (searchInputType === "person") {
             queryPeople(searchInputValue)
             .then(async (responseData) => {
-                return showQueriedPeople(responseData);
+                const data = await responseData.json();
+                return showQueriedPeople(data);
             })
             .catch((responseData) => {
                 displayErrorOnSite(500);
