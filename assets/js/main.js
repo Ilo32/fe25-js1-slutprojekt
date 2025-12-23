@@ -6,6 +6,17 @@ const listType = document.getElementById('top10-type');
 const searchForm = document.getElementById('search-form')
 const listContainer = document.getElementById('top10-container');
 
+const { animate } = anime;
+
+/* Woo animate hero and subtitle */
+animate([heroTitle, heroSubtitle], {
+    opacity: [0, 1],
+    translateY: [18, 0],
+    delay: (_el, index) => index * 140,
+    duration: 900,
+    easing: 'easeOutQuart'
+});
+
 /*
 * Handing of switching between top rated and most popular movies on the front page. 
 */
