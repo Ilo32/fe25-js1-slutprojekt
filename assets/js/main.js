@@ -4,13 +4,25 @@ import { showMovieCard, showQuery } from './renderContent.js'
 
 const listType = document.getElementById('top10-type');
 const searchForm = document.getElementById('search-form')
+const listContainer = document.getElementById('top10-container');
 
 /*
 * Handing of switching between top rated and most popular movies on the front page. 
 */
 listType.addEventListener('change', () => {
     listContainer.innerHTML = '';
-
+    getTop10Movies(listType.value)
+    .then(async (responseData) => {
+        const movieData = await responseData.json();
+        const movies = movieData.results;
+        for (const movie of movies) {
+            showMovieCard(movie)
+        }
+    })
+    .catch((responseData) => {
+        console.log(responseData)
+        displayErrorOnSite(responseData)
+    });
 });
 
 /*

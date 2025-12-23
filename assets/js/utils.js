@@ -6,6 +6,8 @@ export function getImageUrl(path) {
 }
 
 export function displayErrorOnSite(code) {
+    const messageContainer = document.getElementById('message-container')
+    
     const responseData = code.status ? code.status : code
     const translatedError = {
         [200] : "How do you even get this as an error?",
@@ -38,7 +40,7 @@ export function displayErrorOnSite(code) {
     errorContainer.appendChild(errorTitle);
     errorContainer.appendChild(errorContent);
     errorContainer.appendChild(errorFooter);
-    document.getElementById('message-container').appendChild(errorContainer);
+    messageContainer.appendChild(errorContainer);
 
     errorContainer.addEventListener('click', () => {
        errorContainer.remove();
