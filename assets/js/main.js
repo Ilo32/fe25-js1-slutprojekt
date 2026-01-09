@@ -54,7 +54,8 @@ getTop10Movies(listType.value)
     .then(async (responseData) => {
         const movieData = await responseData.json();
         const movies = movieData.results;
-        for (const movie of movies) {
+        const splicedMovies = movies.splice(0, 10);
+        for (const movie of splicedMovies) {
             showMovieCard(movie)
         }
     })
