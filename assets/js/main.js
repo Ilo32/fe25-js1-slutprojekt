@@ -1,3 +1,7 @@
+/** 
+ * @module main
+ * Module responsible for initializing the main site.
+**/
 import { getTop10Movies } from './api.js';
 import { displayErrorOnSite } from './utils.js';
 import { showMovieCard, showQuery } from './renderContent.js'
@@ -56,7 +60,8 @@ getTop10Movies(listType.value)
         const movies = movieData.results;
         const splicedMovies = movies.splice(0, 10);
         for (const movie of splicedMovies) {
-            showMovieCard(movie)
+            /* The true argument hides the description. */
+            showMovieCard(movie, true)
         }
     })
     .catch((responseData) => {

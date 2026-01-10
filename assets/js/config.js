@@ -1,3 +1,7 @@
+/** 
+ * @module config
+ * Module responsible for maintaining all of the configuration for this site.
+**/
 export const api_key = '052ed265ba361437d37e84502608856e';
 export const base_url = 'https://api.themoviedb.org/3';
 export const base_image_url = 'https://image.tmdb.org/t/p';

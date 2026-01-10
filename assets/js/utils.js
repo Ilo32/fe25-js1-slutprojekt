@@ -1,3 +1,7 @@
+/** 
+ * @module utils
+ * Module responsible for small utilties and error handling.
+**/
 import { base_image_url, image_sizes, placeholder_images } from './config.js';
 
 export function getImageUrl(path) {
@@ -16,10 +20,10 @@ export function displayErrorOnSite(code) {
         [401] : "You are not authorized to access the requested resource.",
         [403] : "Access to the requested resource is forbidden.",
         [408] : "The request timed out; please try again.",
-        [429] : "Too many requests; please slow down your requests."
+        [429] : "Too many requests; please slow down your requests.",
+        [418] : "You are currently offline, please reconnect."
     }
 
-    console.log(code, responseData, typeof(responseData));
     let error = code;
     if (typeof(responseData) === "number") {
         error = translatedError[responseData];

@@ -12,7 +12,6 @@ async function showModal(movieId) {
     getMovieDetails(movieId)
         .then(async (responseData) => {
             const data = await responseData.json();
-            console.log(data);
 
             const modal = document.createElement('div');
             const card = document.createElement('div');
@@ -78,7 +77,6 @@ async function showModal(movieId) {
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${trailer.key}?rel=0`;
                 iframe.title = `${data.title} trailer`;
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.setAttribute('allowfullscreen', '');
                 trailerContainer.appendChild(iframe);
             }
@@ -206,7 +204,7 @@ async function showQueriedPeople(response) {
 };
 
 
-export const showMovieCard = async (movie) => {
+export const showMovieCard = async (movie, hideDescription) => {
     const card = document.createElement('button');
     card.classList.add('top10-card');
     card.setAttribute("id" , movie.id);
@@ -218,7 +216,8 @@ export const showMovieCard = async (movie) => {
     const movieTitle = document.createElement('h4');
     const movieVote = document.createElement('p');
     const movieRelease = document.createElement('p');
-    const movieDescription = document.createElement('p');
+    console.log(hideDescription)
+    const movieDescription = hideDescription ? "" : document.createElement('p');
 
     movieTitle.textContent = movie.title;
     movieRelease.textContent = movie.release_date;
@@ -226,12 +225,14 @@ export const showMovieCard = async (movie) => {
     movieImage.alt = `Image of ${movie.title}`
 
     const shortenedOverview = movie.overview.length > 64 ? movie.overview.substring(0, 64) + "..." : movie.overview;
-    movieDescription.textContent = shortenedOverview
+    if (!hideDescription) {
+        movieDescription.textContent = shortenedOverview
+        textDiv.appendChild(movieDescription)
+    }
     
     textDiv.appendChild(movieTitle);
     textDiv.appendChild(movieVote);
     textDiv.appendChild(movieRelease);
-    textDiv.appendChild(movieDescription)
 
     card.appendChild(movieImage);
     card.appendChild(textDiv);
@@ -251,9 +252,16 @@ export async function showQuery() {
             queryMovies(searchInputValue)
             .then(async (responseData) => {
                 const data = await responseData.json();
+                console.log(data)
+                if (data.total_results === 0) {
+                    displayErrorOnSite(404)
+                }
                 return showQueriedMovies(data);
             })
             .catch((responseData) => {
+                if (!window.navigator.onLine) {
+                    return displayErrorOnSite(418);
+                }
                 displayErrorOnSite(500);
                 console.error(responseData);
             });
@@ -262,9 +270,15 @@ export async function showQuery() {
             queryPeople(searchInputValue)
             .then(async (responseData) => {
                 const data = await responseData.json();
+                if (data.total_results === 0) {
+                    displayErrorOnSite(404)
+                }
                 return showQueriedPeople(data);
             })
             .catch((responseData) => {
+                if (!window.navigator.onLine) {
+                    return displayErrorOnSite(418);
+                }
                 displayErrorOnSite(500);
                 console.error(responseData);
             });

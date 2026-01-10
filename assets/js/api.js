@@ -1,3 +1,7 @@
+/** 
+ * @module api
+ * Module responsible everything that handles API calls.
+**/
 import { api_key, base_url } from './config.js';
 
 export const getTop10Movies = async (type) => {
